@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bmh-4
+type: Opaque
+stringData:
+  username: jsj
+  password: ckddmlrhks401!
+
+---
+
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: bmh-4
+spec:
+  online: true
+  bootMACAddress: a4:bf:01:55:0d:70
+  # This particular hardware does not support UEFI so we use legacy
+  bootMode: legacy
+  bmc:
+    address: ipmi://192.168.40.56
+    credentialsName: bmh-4
+    disableCertificateVerification: true
